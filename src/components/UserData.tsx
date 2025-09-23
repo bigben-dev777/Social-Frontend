@@ -1,6 +1,7 @@
 import { Button, Paper, Stack, styled, Typography } from '@mui/material'
 
 import { ResponseExploreUser } from '@/types/user'
+import { followUserWithId, unfollowUserWithId } from '@/services'
 
 const UserDataContainer = styled(Stack)({
   alignItems: 'center',
@@ -8,9 +9,25 @@ const UserDataContainer = styled(Stack)({
   gap: 8
 })
 
-export default function UserData({ userData }: { userData: ResponseExploreUser }) {
-  const handleFollowUser = async () => {
-    
+export default function UserData({
+  userData,
+  handleBtnClick
+}: {
+  userData: ResponseExploreUser
+  handleBtnClick: () => void
+}) {
+  const handleToggleFollowBtnClick = async () => {
+    try {
+      if (userData.isFollowing) {
+        await unfollowUserWithId(userData._id)
+        handleBtnClick()
+      } else {
+        await followUserWithId(userData._id)
+        handleBtnClick()
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -20,7 +37,11 @@ export default function UserData({ userData }: { userData: ResponseExploreUser }
         <Typography variant='body1'>{userData.email}</Typography>
         <Typography variant='body1'>Followers: {userData.followers.length}</Typography>
         <Typography variant='body1'>Following: {userData.following.length}</Typography>
-        <Button variant='contained' color={userData.isFollowing ? 'error' : 'primary'}>
+        <Button
+          variant='contained'
+          color={userData.isFollowing ? 'error' : 'primary'}
+          onClick={() => handleToggleFollowBtnClick()}
+        >
           {userData.isFollowing ? 'UnFollow' : 'Follow'}
         </Button>
       </UserDataContainer>

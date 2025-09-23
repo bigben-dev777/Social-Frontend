@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 function Explore() {
   const [users, setUsers] = useState<ResponseExploreUser[]>([])
+  const [changed, setChanged] = useState(false)
 
   const handleExploreUsers = async () => {
     try {
@@ -16,9 +17,17 @@ function Explore() {
     }
   }
 
+  const toggleChanged = () => {
+    if (changed) {
+      setChanged(false)
+    } else {
+      setChanged(true)
+    }
+  }
+
   useEffect(() => {
     handleExploreUsers()
-  }, [])
+  }, [changed])
 
   return (
     <Box>
@@ -30,7 +39,7 @@ function Explore() {
           }}
         >
           {users.map(user => (
-            <UserData key={user._id} userData={user} />
+            <UserData key={user._id} userData={user} handleBtnClick={toggleChanged} />
           ))}
         </Stack>
       </Container>
