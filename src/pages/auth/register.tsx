@@ -1,4 +1,7 @@
+import { signUp } from '@/services'
+import { User } from '@/types'
 import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: '400px',
@@ -14,6 +17,24 @@ const DialogContainer = styled(Stack)({
 })
 
 export default function Register() {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSignUpUser = async () => {
+    try {
+      const newUser: Omit<User, '_id'> = {
+        username,
+        email,
+        password
+      }
+
+      await signUp(newUser)
+    } catch (error) {
+      console.log(`Register Failed ${error}`)
+    }
+  }
+
   return (
     <Container>
       <DialogContainer>
@@ -22,16 +43,31 @@ export default function Register() {
             <Typography variant='h4' color='primary'>
               Register
             </Typography>
-            <TextField color='primary' variant='outlined' placeholder='username' />
-            <TextField color='primary' variant='outlined' placeholder='email' type='email' />
+            <TextField
+              color='primary'
+              variant='outlined'
+              placeholder='username'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+            <TextField
+              color='primary'
+              variant='outlined'
+              placeholder='email'
+              type='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
             <TextField
               color='primary'
               variant='outlined'
               placeholder='password'
               type='password'
               autoComplete='current-password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
-            <Button color='primary' variant='contained' size='large'>
+            <Button color='primary' variant='contained' size='large' onClick={() => handleSignUpUser()}>
               Register
             </Button>
           </Stack>

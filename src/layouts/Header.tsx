@@ -20,7 +20,7 @@ export default function Header() {
       <Container>
         <Navbar>
           {PAGES.map(page => (
-            <Link color='textSecondary' variant='h5'>
+            <Link color='textSecondary' variant='h5' key={'headerKey' + page}>
               {page}
             </Link>
           ))}

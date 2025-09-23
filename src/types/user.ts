@@ -5,6 +5,8 @@ export interface User {
   password: string
 }
 
+export type LoginUserInfo = Omit<User, '_id' | 'username'>
+
 export interface UserProfile extends User {
   followers: string[]
   following: string[]

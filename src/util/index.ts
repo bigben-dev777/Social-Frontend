@@ -10,5 +10,5 @@ export function getAuthorizedTokenHeader(): Partial<AuthHeader> {
 }
 
 export function setTokenAtLocal(token: string): void {
-  localStorage.setItem('token', token);
+  localStorage.setItem('token', token)
 }
