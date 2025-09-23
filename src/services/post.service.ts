@@ -25,6 +25,14 @@ export const getFeed = async (): Promise<Post[]> => {
   }
 };
 
+export const addPost = async (content: string): Promise<void> => {
+  try {
+    await postApi.post('/', { content }, { headers: getAuthorizedTokenHeader() });
+  } catch (error) {
+    throw new Error(`🚨 Failed to add post ${error}`);
+  }
+}
+
 export const likePost = async (postId: string): Promise<void> => {
   try {
     await postApi.post(`/${postId}/like`, { headers: getAuthorizedTokenHeader() });

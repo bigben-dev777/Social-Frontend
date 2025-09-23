@@ -41,11 +41,12 @@ function Profile() {
           <Stack direction='row'>
             <Stack flex={1} sx={{}}>
               <Avatar
-                {...stringAvatar('name')}
+                {...stringAvatar(profileData.username)}
                 sx={{
                   width: '300px',
                   height: '300px',
-                  marginBlock: '2rem'
+                  marginBlock: '2rem',
+                  fontSize: '10rem'
                 }}
               />
               <Typography variant='h4'>{profileData.username}</Typography>
@@ -55,7 +56,15 @@ function Profile() {
             </Stack>
             <Stack flex={2}>
               <Stack>
-                <Typography>Followings</Typography>
+                <Typography
+                  variant='h4'
+                  sx={{
+                    marginTop: '1rem',
+                    paddingBlock: '1rem'
+                  }}
+                >
+                  Followings
+                </Typography>
                 <Divider />
                 <Stack
                   sx={{
@@ -82,7 +91,14 @@ function Profile() {
                 </Stack>
               </Stack>
               <Stack>
-                <Typography>Followers</Typography>
+                <Typography
+                  variant='h4'
+                  sx={{
+                    paddingBlock: '1rem'
+                  }}
+                >
+                  Followers
+                </Typography>
                 <Divider />
                 <Stack
                   sx={{
@@ -109,12 +125,27 @@ function Profile() {
                 </Stack>
               </Stack>
               <Stack>
-                <Typography>Posts</Typography>
-                <Divider />
+                <Typography
+                  variant='h4'
+                  sx={{
+                    paddingBlock: '1rem'
+                  }}
+                >
+                  Posts
+                </Typography>
+                <Divider sx={{ marginBottom: '20px' }} />
                 {posts.map(post => (
-                  <Box key={post._id}>
+                  <Stack key={post._id} mt='16px' ml='10px'>
                     <Typography>{post.content.slice(0, 50) + '...'}</Typography>
-                  </Box>
+                    <Typography
+                      variant='caption'
+                      sx={{
+                        textAlign: 'right'
+                      }}
+                    >
+                      {post.createdAt}
+                    </Typography>
+                  </Stack>
                 ))}
               </Stack>
             </Stack>

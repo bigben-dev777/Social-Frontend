@@ -14,7 +14,7 @@ export default function Header() {
     <Box
       component='header'
       sx={{
-        backgroundColor: '#747474'
+        backgroundColor: '#141414'
       }}
     >
       <Container>
