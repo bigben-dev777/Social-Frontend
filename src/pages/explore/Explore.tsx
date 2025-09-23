@@ -1,33 +1,33 @@
-import UserData from '@/components/UserData'
-import { getExploreUsers } from '@/services'
-import { ResponseExploreUser } from '@/types/index'
-import { Box, Container, Stack } from '@mui/material'
-import { useEffect, useState } from 'react'
+import UserData from '@/components/UserData';
+import { getExploreUsers } from '@/services';
+import { ResponseExploreUser } from '@/types/index';
+import { Box, Container, Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 function Explore() {
-  const [users, setUsers] = useState<ResponseExploreUser[]>([])
-  const [changed, setChanged] = useState(false)
+  const [users, setUsers] = useState<ResponseExploreUser[]>([]);
+  const [changed, setChanged] = useState(false);
 
   const handleExploreUsers = async () => {
     try {
-      const newUsers = await getExploreUsers()
-      setUsers(newUsers)
+      const newUsers = await getExploreUsers();
+      setUsers(newUsers);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const toggleChanged = () => {
     if (changed) {
-      setChanged(false)
+      setChanged(false);
     } else {
-      setChanged(true)
+      setChanged(true);
     }
-  }
+  };
 
   useEffect(() => {
-    handleExploreUsers()
-  }, [changed])
+    handleExploreUsers();
+  }, [changed]);
 
   return (
     <Box>
@@ -44,7 +44,7 @@ function Explore() {
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }
 
-export default Explore
+export default Explore;

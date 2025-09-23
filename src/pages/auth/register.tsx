@@ -1,25 +1,25 @@
-import { signUp } from '@/services'
-import { User } from '@/types'
-import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
+import { signUp } from '@/services';
+import { User } from '@/types';
+import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: '400px',
   padding: theme.spacing(2),
   ...theme.typography.body2,
   textAlign: 'center'
-}))
+}));
 
 const DialogContainer = styled(Stack)({
   alignItems: 'center',
   justifyContent: 'center',
   height: '80vh'
-})
+});
 
 export default function Register() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignUpUser = async () => {
     try {
@@ -27,13 +27,13 @@ export default function Register() {
         username,
         email,
         password
-      }
+      };
 
-      await signUp(newUser)
+      await signUp(newUser);
     } catch (error) {
-      console.log(`Register Failed ${error}`)
+      console.log(`Register Failed ${error}`);
     }
-  }
+  };
 
   return (
     <Container>
@@ -74,5 +74,5 @@ export default function Register() {
         </DemoPaper>
       </DialogContainer>
     </Container>
-  )
+  );
 }

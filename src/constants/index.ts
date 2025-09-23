@@ -1,1 +1,1 @@
-export const PAGES = ['explore', 'feed', 'createPost', 'profile', 'login', 'register']
+export const PAGES = ['explore', 'feed', 'createPost', 'profile', 'login', 'register'];

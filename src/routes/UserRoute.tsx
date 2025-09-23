@@ -1,5 +1,5 @@
-import Explore from '@/pages/explore/Explore'
-import Profile from '@/pages/profile/Profile'
+import Explore from '@/pages/explore/Explore';
+import Profile from '@/pages/profile/Profile';
 
 const UserRoutes = [
   {
@@ -10,6 +10,6 @@ const UserRoutes = [
     path: '/profile',
     element: <Profile />
   }
-]
+];
 
-export default UserRoutes
+export default UserRoutes;

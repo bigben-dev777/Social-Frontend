@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 export const customizations: Components<Theme> = {
   MuiButtonBase: {
@@ -20,4 +20,4 @@ export const customizations: Components<Theme> = {
       }
     }
   }
-}
+};

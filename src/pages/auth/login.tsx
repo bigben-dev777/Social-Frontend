@@ -1,32 +1,32 @@
-import { logIn } from '@/services'
-import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
-import { LoginUserInfo } from '@/types'
+import { logIn } from '@/services';
+import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
+import { LoginUserInfo } from '@/types';
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: '400px',
   padding: theme.spacing(2),
   ...theme.typography.body2,
   textAlign: 'center'
-}))
+}));
 
 const DialogContainer = styled(Stack)({
   alignItems: 'center',
   justifyContent: 'center',
   height: '80vh'
-})
+});
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLoginUser = async () => {
     const newUser: LoginUserInfo = {
       email,
       password
-    }
-    await logIn(newUser)
-  }
+    };
+    await logIn(newUser);
+  };
 
   return (
     <Container>
@@ -60,5 +60,5 @@ export default function Login() {
         </DemoPaper>
       </DialogContainer>
     </Container>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import Register from '@/pages/auth/register'
-import Login from '@/pages/auth/login'
+import Register from '@/pages/auth/register';
+import Login from '@/pages/auth/login';
 
 const AuthRoutes = [
   {
@@ -10,6 +10,6 @@ const AuthRoutes = [
     path: '/login',
     element: <Login />
   }
-]
+];
 
-export default AuthRoutes
+export default AuthRoutes;

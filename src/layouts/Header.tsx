@@ -1,13 +1,13 @@
-import { PAGES } from '@/constants'
-import { Box, Container, Stack, styled, Link } from '@mui/material'
-import React from 'react'
+import { PAGES } from '@/constants';
+import { Box, Container, Stack, styled, Link } from '@mui/material';
+import React from 'react';
 
 const Navbar = styled(Stack)({
   padding: '1.5rem 0.75rem',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center'
-})
+});
 
 export default function Header() {
   return (
@@ -27,5 +27,5 @@ export default function Header() {
         </Navbar>
       </Container>
     </Box>
-  )
+  );
 }

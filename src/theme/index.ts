@@ -1,2 +1,2 @@
-export * from './AppTheme'
-export * from './themePrimitives'
+export * from './AppTheme';
+export * from './themePrimitives';

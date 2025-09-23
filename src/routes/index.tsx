@@ -1,8 +1,8 @@
-import Layout from '@/layouts/Layout'
-import { createBrowserRouter } from 'react-router-dom'
-import AuthRoutes from './AuthRoute'
-import UserRoutes from './UserRoute'
-import PostRoutes from './PostRoute'
+import Layout from '@/layouts/Layout';
+import { createBrowserRouter } from 'react-router-dom';
+import AuthRoutes from './AuthRoute';
+import UserRoutes from './UserRoute';
+import PostRoutes from './PostRoute';
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +20,6 @@ const routes = createBrowserRouter([
     element: <Layout />,
     children: PostRoutes
   }
-])
+]);
 
-export default routes
+export default routes;
