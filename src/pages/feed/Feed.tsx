@@ -1,7 +1,7 @@
 import Article from '@/components/Article';
 import { getFeed } from '@/services';
 import { Post } from '@/types/post';
-import { Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 function Feed() {
@@ -21,11 +21,11 @@ function Feed() {
   }, []);
 
   return (
-    <Stack>
+    <Container>
       {posts.map(post => (
         <Article postData={post} key={post._id} />
       ))}
-    </Stack>
+    </Container>
   );
 }
 

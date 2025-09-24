@@ -2,6 +2,7 @@ import { signUp } from '@/services';
 import { User } from '@/types';
 import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: '400px',
@@ -31,7 +32,7 @@ export default function Register() {
 
       await signUp(newUser);
     } catch (error) {
-      console.log(`Register Failed ${error}`);
+      console.error(error);
     }
   };
 

@@ -6,7 +6,7 @@ function Layout() {
     <div
       style={{
         backgroundColor: 'aliceblue',
-        height: '100vh'
+        minHeight: '100vh'
       }}
     >
       <Header />

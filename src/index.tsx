@@ -8,6 +8,7 @@ import { persistor, store } from './store';
 import App from './App';
 
 import './index.css';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -16,6 +17,7 @@ root.render(
     <StyledEngineProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <ToastContainer style={{ zIndex: 100000 }} />
           <App />
         </PersistGate>
       </Provider>

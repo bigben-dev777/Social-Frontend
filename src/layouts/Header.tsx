@@ -1,6 +1,7 @@
 import { PAGES } from '@/constants';
 import { Box, Container, Stack, styled, Link } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = styled(Stack)({
   padding: '1.5rem 0.75rem',
@@ -10,6 +11,12 @@ const Navbar = styled(Stack)({
 });
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const handleNavLinkClick = (endpoint: string) => {
+    navigate(endpoint);
+  };
+
   return (
     <Box
       component='header'
@@ -20,8 +27,15 @@ export default function Header() {
       <Container>
         <Navbar>
           {PAGES.map(page => (
-            <Link color='textSecondary' variant='h5' key={'headerKey' + page}>
-              {page}
+            <Link
+              color='textSecondary'
+              variant='h5'
+              key={'headerKey' + page.caption}
+              onClick={() => {
+                handleNavLinkClick(page.url);
+              }}
+            >
+              {page.caption}
             </Link>
           ))}
         </Navbar>

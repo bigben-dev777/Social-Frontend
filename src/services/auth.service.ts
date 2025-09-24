@@ -10,9 +10,8 @@ export const signUp = async (userData: Omit<User, '_id'>): Promise<UserProfile> 
     const response = await authApi.post('/register', userData);
     console.log(`✔ Success to Sign Up ${userData.email}`);
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
-    console.error(error);
     throw new Error(`🚨 Failed to Sign Up. The reason is ${error}`);
   }
 };
