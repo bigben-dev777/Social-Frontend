@@ -2,6 +2,9 @@ import { logIn } from '@/services';
 import { Button, Container, Paper, Stack, styled, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { LoginUserInfo } from '@/types';
+import { dispatch, signIn } from '@/store';
+import { errorToast, successToast } from '@/util/toast';
+import { useNavigate } from 'react-router-dom';
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: '400px',
@@ -19,13 +22,22 @@ const DialogContainer = styled(Stack)({
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLoginUser = async () => {
-    const newUser: LoginUserInfo = {
+    try{
+      const newUser: LoginUserInfo = {
       email,
       password
     };
-    await logIn(newUser);
+    const {user, token} = await logIn(newUser);
+
+    dispatch(signIn({user, token}));
+    successToast(`${user.username}!, Login Successed`);
+    navigate('/profile');
+    }catch(error) {
+      errorToast(`${error}`)
+    }
   };
 
   return (

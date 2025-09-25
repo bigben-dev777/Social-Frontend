@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
-import { Avatar, Box, Container, Divider, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Container, Divider, Stack, Typography } from '@mui/material';
 
 import { stringAvatar } from '@/util';
 import { Post, UserProfile } from '@/types';
-import { getUserPosts, getUserProfile } from '@/services';
+import { getUserById, getUserPosts, getUserProfile } from '@/services';
+import useUser from '@/hooks/useUser';
+import { useParams } from 'react-router-dom';
 
 function Profile() {
   const [profileData, setProfileData] = useState<UserProfile | undefined>(undefined);
   const [posts, setPosts] = useState<Post[]>([]);
+  const curUserId = useUser()?._id;
+  const { userId } = useParams();
 
   const loadProfile = async () => {
     try {
-      const newProfileData = await getUserProfile();
+      const newProfileData = userId === undefined ? await getUserProfile() : await getUserById(userId);
       setProfileData(newProfileData);
     } catch (error) {
       console.error(error);
@@ -53,6 +57,7 @@ function Profile() {
               <Typography variant='body1' color='secondary'>
                 {profileData.email}
               </Typography>
+              {curUserId !== userId ? <> </> : <Button>Follow</Button>}
             </Stack>
             <Stack flex={2}>
               <Stack>

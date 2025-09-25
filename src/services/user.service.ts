@@ -15,7 +15,7 @@ export const getUserProfile = async (): Promise<UserProfile> => {
   }
 };
 
-export const getUserById = async (userId: string): Promise<User> => {
+export const getUserById = async (userId: string): Promise<UserProfile> => {
   try {
     const response = await userApi.get(`/${userId}`, { headers: getAuthorizedTokenHeader() });
 

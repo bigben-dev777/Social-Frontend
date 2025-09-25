@@ -16,11 +16,15 @@ export const signUp = async (userData: Omit<User, '_id'>): Promise<UserProfile> 
   }
 };
 
-export const logIn = async (userData: LoginUserInfo): Promise<void> => {
+export const logIn = async (userData: LoginUserInfo): Promise<{user: Pick<User, 'username' | 'email' | '_id'> , token: string}> => {
   try {
     const response = await authApi.post('/login', userData);
     setTokenAtLocal(response.data.data.token);
-    console.log('✔ Success to logIn');
+
+    return {
+      user: response.data.data.user,
+      token: response.data.data.token
+    };
   } catch (error) {
     throw new Error(`🚨 Failed to Log in. Reason: ${error}`);
   }

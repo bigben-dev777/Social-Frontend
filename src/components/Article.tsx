@@ -6,12 +6,13 @@ import PostComment from './Comment';
 import { addComment, likePost, unlikePost } from '@/services';
 import { useState } from 'react';
 
-function Article({ postData }: { postData: Post }) {
+function Article({ postData, handleToggleChanged }: { postData: Post, handleToggleChanged: ()=> void }) {
   const [content, setContent] = useState('');
 
   const handleLikePost = async () => {
     try {
       await likePost(postData._id);
+      handleToggleChanged();
     } catch (error) {
       console.error(error);
     }
@@ -28,6 +29,7 @@ function Article({ postData }: { postData: Post }) {
   const handleAddComment = async () => {
     try {
       await addComment(postData._id, content);
+      handleToggleChanged();
       setContent('');
     } catch (error) {
       console.error(error);

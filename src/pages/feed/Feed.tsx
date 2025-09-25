@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 function Feed() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [changed, setChanged] = useState(false);
 
   const loadPosts = async () => {
     try {
@@ -16,14 +17,18 @@ function Feed() {
     }
   };
 
+  const toggleChanged = () => {
+    setChanged(!changed)
+  }
+
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, [changed]);
 
   return (
     <Container>
       {posts.map(post => (
-        <Article postData={post} key={post._id} />
+        <Article postData={post} key={post._id} handleToggleChanged={toggleChanged}/>
       ))}
     </Container>
   );

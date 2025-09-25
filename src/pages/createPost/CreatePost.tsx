@@ -1,4 +1,5 @@
 import { addPost } from '@/services';
+import { errorToast, successToast } from '@/util/toast';
 import { Button, Container, Stack, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 
@@ -8,8 +9,11 @@ function CreatePost() {
   const handleSubmitPost = async () => {
     try {
       await addPost(content);
+      setContent('');
+      successToast('Success to post')
     } catch (error) {
       console.error(error);
+      errorToast('Failed Post')
     }
   };
 
